@@ -81,15 +81,11 @@ public class Algebra {
 
 	// Returns the integer part of x1 / x2
 	public static int div(int x1, int x2) {
-		int i = 0;
 		int c = x1;
 		int d = 0;
-		while (i < x2) {
+		while (c >= x2) {
 			c = minus(c, x2);
-			if (c >= 0) {
-				d++;
-			}	
-			i++;
+			d++;
 		}
 		return d;
 	}
