@@ -32,6 +32,10 @@ public class Algebra {
 			x1++;
 			i++;
 		}
+		while (x2 < 0) {
+			x1--;
+			x2++;
+		}
 		return x1;
 	}
 
@@ -41,6 +45,10 @@ public class Algebra {
 		while (i < x2) {
 			x1--;
 			i++;
+		}
+		while (x2 < 0) {
+			x1++;
+			x2++;
 		}
 		return x1;
 	}
@@ -117,7 +125,7 @@ public class Algebra {
 		while (times(i, i)<= x) {
 			i++;
 		}
-		
+
 		i--;
 		return i;
 	}	  	  
