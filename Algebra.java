@@ -124,7 +124,6 @@ public class Algebra {
 		while (times(i, i)<= x) {
 			i++;
 		}
-
 		i--;
 		return i;
 	}	  	  
