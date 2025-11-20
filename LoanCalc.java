@@ -44,11 +44,11 @@ public class LoanCalc {
 	// the number of periods (n), and epsilon, the approximation's accuracy
 	// Side effect: modifies the class variable iterationCounter.
     public static double bruteForceSolver(double loan, double rate, int n, double epsilon) {
-		int i = 0;
+		iterationCounter = 0;
 		double payment = loan / (double)n; //Initial guess
 		while (endBalance(loan, rate, n, payment) > 0) {
 			payment += epsilon; //We add epsilon each loop until we get to zero.
-			i++;
+			iterationCounter++;
 		}		
 		return payment;
     }
@@ -59,7 +59,7 @@ public class LoanCalc {
 	// the number of periods (n), and epsilon, the approximation's accuracy
 	// Side effect: modifies the class variable iterationCounter.
     public static double bisectionSolver(double loan, double rate, int n, double epsilon) {  
-		int i = 0;
+		iterationCounter = 0;
 
 		double L = loan / (double)n;
 		double H = loan * (1.0 + rate / 100.0);
@@ -74,7 +74,7 @@ public class LoanCalc {
 			}
 
 			g = (L + H) / 2.0;
-			i++;
+			iterationCounter++;
 		}
 		return g;
     }
