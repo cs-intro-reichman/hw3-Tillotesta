@@ -49,8 +49,8 @@ public class LoanCalc {
 		double payment = loan / (double)n; //Initial guess
 		while (endBalance(loan, rate, n, payment) > 0) {
 			//We add epsilon each loop until we get to zero.
-			iterationCounter++;
 			payment += epsilon;
+			iterationCounter++;
 		}		
 		return payment - epsilon;
     }
