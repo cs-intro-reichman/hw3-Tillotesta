@@ -48,10 +48,11 @@ public class LoanCalc {
 		iterationCounter = 0;
 		double payment = loan / (double)n; //Initial guess
 		while (endBalance(loan, rate, n, payment) > 0) {
-			payment += epsilon; //We add epsilon each loop until we get to zero.
+			//We add epsilon each loop until we get to zero.
 			iterationCounter++;
+			payment += epsilon;
 		}		
-		return payment;
+		return payment - epsilon;
     }
     
     // Uses bisection search to compute an approximation of the periodical payment 
