@@ -53,41 +53,63 @@ public class Algebra {
 
 	// Returns x1 * x2
 	public static int times(int x1, int x2) {
+		boolean isNeg = (x1 < 0) != (x2 < 0);
+		int a = Math.abs(x1);
+		int b = Math.abs(x2);
+
+		int min = Math.min(a, b);
+   		int max = Math.max(a, b);
+		
 		int i = 0;
 		int c = 0;
-		while (i < x2) {
-			c = plus(c, x1);
+		while (i < min) {
+			c = plus(c, max);
 			i++;
 		}
-		return c;
+		if (isNeg) {
+			return -c;
+		} else {
+			return c;
+		}
 	}
 
 	// Returns x^n (for n >= 0)
 	public static int pow(int x, int n) {
 		int i = 1;
-		int c = x;
+		int base = Math.abs(x);
+		int c = base;
+		
 		if (n == 0) {
 			return 1;
 		}
 		while (i < n) {
-			c = times(c, x);
+			c = times(c, base);
 			i++;
-
-
 		}
-		return c;
+		if (x < 0 && n % 2!= 0) {
+			return times(c, -1);
+		} else {
+			return c;
+		}
 	}
 
 
 	// Returns the integer part of x1 / x2
 	public static int div(int x1, int x2) {
-		int c = x1;
 		int d = 0;
-		while (c >= x2) {
-			c = minus(c, x2);
+		boolean isNeg = (x1 < 0) != (x2 < 0);
+		int dividend = Math.abs(x1);
+    	int divisor = Math.abs(x2);
+
+		while (dividend >= divisor) {
+			dividend = minus(dividend, divisor);
 			d++;
 		}
-		return d;
+		if (isNeg) {
+			return minus(0,d);
+		} else {
+			return d;
+		}
 	}
 		//System.out.println(mod(25,7));   // 25 % 7 = 4
    		//System.out.println(mod(120,6));  // 120 % 6
@@ -105,7 +127,6 @@ public class Algebra {
 
 			if (c == x1) {
 				return 0;
-
 			}
 		r = minus(x1, times(x2, div(x1, x2)));
 		}
