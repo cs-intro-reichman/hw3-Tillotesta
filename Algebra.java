@@ -57,13 +57,20 @@ public class Algebra {
 		int a = Math.abs(x1);
 		int b = Math.abs(x2);
 
-		int min = Math.min(a, b);
-   		int max = Math.max(a, b);
-		
+		int multiplier;   
+    	int multiplicand; 
+
+    	if (a < b) {
+        	multiplier = a;
+        	multiplicand = b;
+    	} else {
+        	multiplier = b;
+        	multiplicand = a;
+    	}
 		int i = 0;
 		int c = 0;
-		while (i < min) {
-			c = plus(c, max);
+		while (i < multiplier) {
+			c = plus(c, multiplicand);
 			i++;
 		}
 		if (isNeg) {
@@ -75,10 +82,11 @@ public class Algebra {
 
 	// Returns x^n (for n >= 0)
 	public static int pow(int x, int n) {
-		int i = 1;
+		
 		int base = Math.abs(x);
 		int c = base;
-		
+		int i = 1;
+
 		if (n == 0) {
 			return 1;
 		}
@@ -86,7 +94,7 @@ public class Algebra {
 			c = times(c, base);
 			i++;
 		}
-		if (x < 0 && n % 2!= 0) {
+		if (x < 0 && n % 2 != 0) {
 			return times(c, -1);
 		} else {
 			return c;
