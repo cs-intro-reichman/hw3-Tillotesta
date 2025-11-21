@@ -21,47 +21,139 @@ public class Algebra {
    		System.out.println(sqrt(36));
 		System.out.println(sqrt(263169));
    		System.out.println(sqrt(76123));
-	}  
+	} 
+	
+	int i=0;
 
 	// Returns x1 + x2
 	public static int plus(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+		while (x2 > 0) {
+			x1++;
+			x2--;
+		}
+		while (x2 < 0) {
+			x1--;
+			x2++;
+		}
+		return x1;
 	}
 
 	// Returns x1 - x2
 	public static int minus(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+		while (x2 > 0) {
+			x1--;
+			x2--;
+		}
+		while (x2 < 0) {
+			x1++;
+			x2++;
+		}
+		return x1;
 	}
 
 	// Returns x1 * x2
 	public static int times(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+		boolean isNeg = (x1 < 0) != (x2 < 0);
+		int a = Math.abs(x1);
+		int b = Math.abs(x2);
+
+		int multiplier;   
+    	int multiplicand; 
+
+    	if (a < b) {
+        	multiplier = a;
+        	multiplicand = b;
+    	} else {
+        	multiplier = b;
+        	multiplicand = a;
+    	}
+		int i = 0;
+		int c = 0;
+		while (i < multiplier) {
+			c = plus(c, multiplicand);
+			i++;
+		}
+		if (isNeg) {
+			return -c;
+		} else {
+			return c;
+		}
 	}
 
 	// Returns x^n (for n >= 0)
 	public static int pow(int x, int n) {
-		// Replace the following statement with your code
-		return 0;
+		
+		int base = Math.abs(x);
+		int c = base;
+		int i = 1;
+
+		if (n == 0) {
+			return 1;
+		}
+		while (i < n) {
+			c = times(c, base);
+			i++;
+		}
+		if (x < 0 && n % 2 != 0) {
+			return times(c, -1);
+		} else {
+			return c;
+		}
 	}
 
-	// Returns the integer part of x1 / x2 
+
+	// Returns the integer part of x1 / x2
 	public static int div(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
-	}
+		int d = 0;
+		boolean isNeg = (x1 < 0) != (x2 < 0);
+		int dividend = Math.abs(x1);
+    	int divisor = Math.abs(x2);
 
+		while (dividend >= divisor) {
+			dividend = minus(dividend, divisor);
+			d++;
+		}
+		if (isNeg) {
+			return minus(0,d);
+		} else {
+			return d;
+		}
+	}
+		//System.out.println(mod(25,7));   // 25 % 7 = 4
+   		//System.out.println(mod(120,6));  // 120 % 6
 	// Returns x1 % x2
+	// remainder = dividend - (Quotient*divisor)
+	//  4(r) = 25(x1) - 7(x2) * k()
 	public static int mod(int x1, int x2) {
-		// Replace the following statement with your code
-		return 0;
+		int k = 1;
+		int c = 0;
+		int r = 0;
+
+		while (c <= x1) {
+			c = times(k, x2);
+			k++;
+
+			if (c == x1) {
+				return 0;
+			}
+		r = minus(x1, times(x2, div(x1, x2)));
+		}
+		return r;
 	}	
+
+
+
+		//System.out.println(sqrt(36));
+		//System.out.println(sqrt(263169));
+   		//System.out.println(sqrt(76123));
 
 	// Returns the integer part of sqrt(x) 
 	public static int sqrt(int x) {
-		// Replace the following statement with your code
-		return 0;
+		int i = 1;
+		while (times(i, i)<= x) {
+			i++;
+		}
+		i--;
+		return i;
 	}	  	  
 }
