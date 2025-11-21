@@ -32,7 +32,7 @@ public class LoanCalc {
 		double c;
 		
 		double rateMonth = rate / 12;
-		double interest = (rateMonth / 100.0) + 1;
+		double interest = (rateMonth / 100.0) + 1.0;
 
 		while (i < n) {
 			c = loan * interest;
